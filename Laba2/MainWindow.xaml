@@ -1,0 +1,30 @@
+﻿<Window x:Class="Laba2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Laba2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="531.667">
+    <Grid RenderTransformOrigin="0.252,0.481">
+        <Label x:Name="label" Content="Select File: " HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" Width="70" Height="23"/>
+        <ListBox x:Name="filesList" HorizontalAlignment="Left" Height="26" Margin="10,134,0,0" VerticalAlignment="Top" Width="257"/>
+        <Separator HorizontalAlignment="Left" Height="12" Margin="191,112,0,0" VerticalAlignment="Top" Width="319" RenderTransformOrigin="0.411,-0.146">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-89.777"/>
+                    <TranslateTransform X="-52.013" Y="76.983"/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+        <Label x:Name="Original_Files_Section" Content="Creating and choosinf Files : " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="246"/>
+        <TextBox x:Name="fileName" HorizontalAlignment="Left" Height="23" Margin="10,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Text="Name"/>
+        <Label x:Name="Create_New_File_Label" Content="Create New File: " HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <Button x:Name="CreateFile_btn" Content="Button" HorizontalAlignment="Left" Margin="151,71,0,0" VerticalAlignment="Top" Width="116"/>
+        <TextBox x:Name="fileContent" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Height="106" Margin="10,204,0,0" Text="Enter Text(not less than 500 symbols)" VerticalAlignment="Top" Width="257" FontSize="13.333"/>
+        <Label x:Name="label_Copy" Content="Enter your file Text(not less than 500 symbols): " HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="265" Height="28"/>
+
+    </Grid>
+</Window>

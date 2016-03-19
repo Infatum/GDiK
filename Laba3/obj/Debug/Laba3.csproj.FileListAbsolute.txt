@@ -1,0 +1,5 @@
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba3\bin\Debug\Laba3.exe.config
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba3\bin\Debug\Laba3.exe
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba3\bin\Debug\Laba3.pdb
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba3\obj\Debug\Laba3.exe
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba3\obj\Debug\Laba3.pdb
