@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Laba2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="531.667">
+        Title="MainWindow" Height="350" Width="546.667">
     <Grid RenderTransformOrigin="0.252,0.481">
         <Label x:Name="label" Content="Select File: " HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" Width="70" Height="23"/>
         <ListBox x:Name="filesList" HorizontalAlignment="Left" Height="26" Margin="10,134,0,0" VerticalAlignment="Top" Width="257"/>
@@ -20,11 +20,19 @@
             </Separator.RenderTransform>
         </Separator>
         <Label x:Name="Original_Files_Section" Content="Creating and choosinf Files : " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="246"/>
-        <TextBox x:Name="fileName" HorizontalAlignment="Left" Height="23" Margin="10,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Text="Name"/>
+        <TextBox x:Name="fileName" HorizontalAlignment="Left" Height="23" Margin="10,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" TextChanged="NameChanged" />
         <Label x:Name="Create_New_File_Label" Content="Create New File: " HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
-        <Button x:Name="CreateFile_btn" Content="Button" HorizontalAlignment="Left" Margin="151,71,0,0" VerticalAlignment="Top" Width="116"/>
-        <TextBox x:Name="fileContent" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Height="106" Margin="10,204,0,0" Text="Enter Text(not less than 500 symbols)" VerticalAlignment="Top" Width="257" FontSize="13.333"/>
-        <Label x:Name="label_Copy" Content="Enter your file Text(not less than 500 symbols): " HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="265" Height="28"/>
+        <Button x:Name="CreateFile_btn" IsEnabled="True" Content="Create" HorizontalAlignment="Left" Margin="151,71,0,0" VerticalAlignment="Top" Width="116" Click="Create_File"/>
+        <TextBox x:Name="fileContent" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Height="85" Margin="10,204,0,0" Text="Enter Text(not less than 500 symbols)" VerticalAlignment="Top" Width="257" FontSize="13.333"/>
+        <Label x:Name="Enter_File_Text_Label" Content="Enter your file Text(not less than 500 symbols): " HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="257" Height="28"/>
+        <TextBox x:Name="Encrypted_Decrypted_TextBox" HorizontalAlignment="Left" Height="163" Margin="291,126,0,0" TextWrapping="Wrap" Text="Encrypted/Decrypted File text here" VerticalAlignment="Top" Width="236"/>
+        <Label x:Name="Original_Files_Section_Copy" Content="Encrypted and Decrypted Text:" HorizontalAlignment="Left" Margin="291,10,0,0" VerticalAlignment="Top" Width="246"/>
+        <Label x:Name="Create_New_File_Label_Copy" Content="Enter key: " HorizontalAlignment="Left" Margin="291,36,0,0" VerticalAlignment="Top" Width="105" Height="26"/>
+        <Button x:Name="Encrypt_Button" Content="Encrypt" HorizontalAlignment="Left" Margin="402,41,0,0" VerticalAlignment="Top" Width="127" Click="Encrypt_Button_Click"/>
+        <Label x:Name="Create_New_File_Label_Copy1" Content="Encrypted/Decrypted Text from file : " HorizontalAlignment="Left" Margin="291,95,0,0" VerticalAlignment="Top" Width="236" Height="26"/>
+        <TextBox x:Name="Password_Text" HorizontalAlignment="Left" Height="23" Margin="291,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Text="Your secret key"/>
+        <Button x:Name="Decrypt_Button" Content="Decrypt" HorizontalAlignment="Left" Margin="291,294,0,0" VerticalAlignment="Top" Width="127" Click="Decrypt_Button_Click"/>
+        <Button x:Name="Save_File" Content="Save" HorizontalAlignment="Left" Margin="10,294,0,0" VerticalAlignment="Top" Width="127" Click="Save_File_Click"/>
 
     </Grid>
 </Window>
