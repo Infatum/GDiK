@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace Laba2
 {
@@ -23,11 +24,15 @@ namespace Laba2
     {
         Encrypted file;
         UnicodeEncoding encoding;
-        string directoryPath;
+        string directoryPath = "./Laba3";
         string filename;
         string passwordfileName;
         string encryptedFileName;
         string DecryptedFileName;
+        ObservableCollection<string> files = new ObservableCollection<string>();
+
+        public ObservableCollection<string> Files { get { return files; } }
+        string[] filesinDir;
 
         public MainWindow()
         {
@@ -35,6 +40,17 @@ namespace Laba2
             if (String.IsNullOrEmpty(fileName.Text))
             {
                 CreateFile_btn.IsEnabled = false;
+            }
+            if (Directory.Exists(directoryPath))
+            {
+                filesinDir = Directory.GetFiles(directoryPath);
+                foreach (var file in filesinDir)
+                {
+                    files.Add(file);
+                }
+
+                this.DataContext = this;
+
             }
         }
 
@@ -56,7 +72,7 @@ namespace Laba2
 
         private void CreateFiles()
         {
-            directoryPath = "./Laba3";
+           
 
             if (!Directory.Exists(directoryPath))
             {
@@ -106,6 +122,17 @@ namespace Laba2
                 }
                 Encrypted_Decrypted_TextBox.Text = file.DecryptTextFile(encryptedFileName, DecryptedFileName).Result;
             }
+        }
+
+        private void fileChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string currentFileSelected = filesList.SelectedItem.ToString();
+            string fileText = null;
+            using (StreamReader sr = new StreamReader(currentFileSelected))
+            {
+                fileText = sr.ReadToEnd();
+            }
+            fileContent.Text = fileText;
         }
     }
 }
