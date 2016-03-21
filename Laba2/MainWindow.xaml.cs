@@ -104,7 +104,7 @@ namespace Laba2
                     FileStream decryptedFile = new FileStream(DecryptedFileName, FileMode.CreateNew);
                     decryptedFile.Dispose();
                 }
-                Encrypted_Decrypted_TextBox.Text = file.DecryptTextFile(encryptedFileName, DecryptedFileName);
+                Encrypted_Decrypted_TextBox.Text = file.DecryptTextFile(encryptedFileName, DecryptedFileName).Result;
             }
         }
     }

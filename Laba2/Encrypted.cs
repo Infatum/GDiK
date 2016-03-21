@@ -200,7 +200,7 @@ namespace Laba2
             return escape;
         }
 
-        public string DecryptTextFile(string encryptedFilePath, string decryptedFilePath)
+        public async Task<string> DecryptTextFile(string encryptedFilePath, string decryptedFilePath)
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             StringBuilder decryptedText = new StringBuilder();
@@ -239,7 +239,7 @@ namespace Laba2
 
             using (StreamWriter streamCrypted = new StreamWriter(encryptedFilePath))
             {
-                 streamCrypted.Write(decryptedChars);
+                 await streamCrypted.WriteAsync(decryptedChars);
             }
             return decryptedText.Append(decryptedChars).ToString();
         }
