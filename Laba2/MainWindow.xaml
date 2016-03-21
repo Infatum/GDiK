@@ -8,7 +8,7 @@
         Title="MainWindow" Height="350" Width="546.667">
     <Grid RenderTransformOrigin="0.252,0.481">
         <Label x:Name="label" Content="Select File: " HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top" Width="70" Height="23"/>
-        <ListBox x:Name="filesList" ScrollViewer.PanningMode="Both" ItemsSource="{Binding Path=Files}" HorizontalAlignment="Left" Height="37" Margin="10,134,0,0" VerticalAlignment="Top" Width="257" SelectionChanged="fileChanged"/>
+        <ListBox x:Name="filesList" IsEnabled="false" ScrollViewer.PanningMode="Both" ItemsSource="{Binding Path=Files}" HorizontalAlignment="Left" Height="37" Margin="10,134,0,0" VerticalAlignment="Top" Width="257" SelectionChanged="fileChanged"/>
         <Separator HorizontalAlignment="Left" Height="12" Margin="191,112,0,0" VerticalAlignment="Top" Width="319" RenderTransformOrigin="0.411,-0.146">
             <Separator.RenderTransform>
                 <TransformGroup>

@@ -71,6 +71,10 @@ namespace Laba2
 
                 using (StreamWriter wr = new StreamWriter(originalFilePath, false))
                 {
+                    if (wr == null)
+                    {
+                        MessageBox.Show("WTF!?");
+                    }
                     await wr.WriteAsync(originalText);
                 }
             }
@@ -239,7 +243,7 @@ namespace Laba2
 
             using (StreamWriter streamCrypted = new StreamWriter(encryptedFilePath))
             {
-                 await streamCrypted.WriteAsync(decryptedChars);
+                 streamCrypted.WriteAsync(decryptedChars);
             }
             return decryptedText.Append(decryptedChars).ToString();
         }

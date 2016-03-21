@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
 
 namespace Laba2
@@ -56,7 +57,7 @@ namespace Laba2
 
         private void CreateFile_btn_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void NameChanged(object sender, TextChangedEventArgs e)
@@ -72,7 +73,7 @@ namespace Laba2
 
         private void CreateFiles()
         {
-           
+
 
             if (!Directory.Exists(directoryPath))
             {
@@ -87,8 +88,13 @@ namespace Laba2
 
         private void Save_File_Click(object sender, RoutedEventArgs e)
         {
+
+            //Regex reg = new Regex("//");
+            filename = filename.Replace(@"\", "/");
+            filename = filename.Replace(@"Laba3/", "");
             if (filename != null)
             {
+                //filename = Regex.Replace(@"\w-");
                 file.WriteTextToFiles(filename, fileContent.Text);
             }
             else
@@ -126,7 +132,10 @@ namespace Laba2
 
         private void fileChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            CreateFile_btn.IsEnabled = true;
             string currentFileSelected = filesList.SelectedItem.ToString();
+            filename = currentFileSelected;
             string fileText = null;
             using (StreamReader sr = new StreamReader(currentFileSelected))
             {
