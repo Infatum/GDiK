@@ -24,16 +24,17 @@ namespace Laba2
     public partial class MainWindow : Window
     {
         Encrypted file;
-        UnicodeEncoding encoding;
+        List<string> filesInDir = new List<string>();
+        List<string> XFiles = new List<string>();
         string directoryPath = "./Laba3";
         string filename;
-        string passwordfileName;
+        string passwordFileName;
         string encryptedFileName;
-        string DecryptedFileName;
+        string decryptedFileName;
         ObservableCollection<string> files = new ObservableCollection<string>();
 
         public ObservableCollection<string> Files { get { return files; } }
-        string[] filesinDir;
+        string[] filesinDirAll;
 
         public MainWindow()
         {
@@ -44,12 +45,20 @@ namespace Laba2
             }
             if (Directory.Exists(directoryPath))
             {
-                filesinDir = Directory.GetFiles(directoryPath);
-                foreach (var file in filesinDir)
+                filesinDirAll = Directory.GetFiles(directoryPath);
+                foreach (var file in filesinDirAll)
                 {
-                    files.Add(file);
+                    if (file.EndsWith("_Encrypted.txt") || file.EndsWith("_Password.txt") || file.EndsWith("_Decrypted.txt"))
+                    {
+                        XFiles.Add(file);
+                        continue;
+                    }
+                    else
+                    {
+                        files.Add(file);
+                    }
                 }
-
+                file = new Encrypted();
                 this.DataContext = this;
 
             }
@@ -74,24 +83,24 @@ namespace Laba2
         private void CreateFiles()
         {
 
-
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
             }
             filename = directoryPath + "/" + fileName.Text + ".txt";
             encryptedFileName = directoryPath + '/' + fileName.Text + "_Encrypted" + ".txt";
-            passwordfileName = directoryPath + '/' + fileName.Text + "_Password" + ".txt";
+            passwordFileName = directoryPath + '/' + fileName.Text + "_Password" + ".txt";
             file = new Encrypted(fileContent.Text, filename);
-            file.CreateEmptyFiles(filename, encryptedFileName, passwordfileName);
+            file.CreateEmptyFiles(filename, encryptedFileName, passwordFileName);
         }
 
         private void Save_File_Click(object sender, RoutedEventArgs e)
         {
-
+            if (file == null)
+            {
+                file = new Encrypted(filename, fileContent.Text);
+            }
             //Regex reg = new Regex("//");
-            filename = filename.Replace(@"\", "/");
-            filename = filename.Replace(@"Laba3/", "");
             if (filename != null)
             {
                 //filename = Regex.Replace(@"\w-");
@@ -106,37 +115,55 @@ namespace Laba2
 
         private void Encrypt_Button_Click(object sender, RoutedEventArgs e)
         {
+            
             if (filename == null)
             {
                 MessageBox.Show("Create or choose file first");
                 return;
             }
-            file.WritePasswordToFile(this.Password_Text.Text, passwordfileName);
-            file.EncryptTextFile(passwordfileName, encryptedFileName);
+            file.WritePasswordToFile(this.Password_Text.Text, passwordFileName);
+            file.EncryptTextFile(passwordFileName, encryptedFileName, fileContent.Text);
 
         }
 
         private void Decrypt_Button_Click(object sender, RoutedEventArgs e)
         {
-            DecryptedFileName = directoryPath + '/' + fileName.Text + "_Decrypted" + ".txt";
-            if (File.Exists(encryptedFileName))
+            if (String.IsNullOrEmpty(decryptedFileName))
             {
-                if (!File.Exists(DecryptedFileName))
+                decryptedFileName = directoryPath + '/' + fileName.Text + "_Decrypted" + ".txt";
+            }
+            
+                if (!File.Exists(decryptedFileName))
                 {
-                    FileStream decryptedFile = new FileStream(DecryptedFileName, FileMode.CreateNew);
+                    FileStream decryptedFile = new FileStream(decryptedFileName, FileMode.CreateNew);
                     decryptedFile.Dispose();
                 }
-                Encrypted_Decrypted_TextBox.Text = file.DecryptTextFile(encryptedFileName, DecryptedFileName).Result;
-            }
+                Encrypted_Decrypted_TextBox.Text = file.DecryptTextFile(encryptedFileName, decryptedFileName).Result;
         }
 
         private void fileChanged(object sender, SelectionChangedEventArgs e)
         {
 
             CreateFile_btn.IsEnabled = true;
+            this.fileName.Text = filesList.SelectedItem.ToString();
             string currentFileSelected = filesList.SelectedItem.ToString();
             filename = currentFileSelected;
             string fileText = null;
+            foreach (var file in XFiles)
+            {
+                if (file.EndsWith("_Encrypted.txt"))
+                {
+                    encryptedFileName = file;
+                }
+                if (file.EndsWith("_Password.txt"))
+                {
+                    passwordFileName = file;
+                }
+                if (file.EndsWith("_Decrypted.txt"))
+                {
+                    decryptedFileName = file;
+                }
+            }
             using (StreamReader sr = new StreamReader(currentFileSelected))
             {
                 fileText = sr.ReadToEnd();

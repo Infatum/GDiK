@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
@@ -25,6 +24,7 @@ namespace Laba2
         private string PasswordFilePath { get; set; }
         public string DecryptedPath { get; set; }
 
+        public Encrypted() { }
         public Encrypted(string sourcePath)
         {
             SourcePath = sourcePath;
@@ -71,10 +71,6 @@ namespace Laba2
 
                 using (StreamWriter wr = new StreamWriter(originalFilePath, false))
                 {
-                    if (wr == null)
-                    {
-                        MessageBox.Show("WTF!?");
-                    }
                     await wr.WriteAsync(originalText);
                 }
             }
@@ -87,7 +83,7 @@ namespace Laba2
         public async void WritePasswordToFile(string password, string passwordPath)
         {
             Password = password;
-            PasswordFilePath = password;
+            PasswordFilePath = passwordPath;
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             byte[] result = uniencoding.GetBytes(Password);
             char[] paswd = Encoding.Unicode.GetChars(result);
@@ -147,11 +143,11 @@ namespace Laba2
             return result;
         }
 
-        public async void EncryptTextFile(string passwordFilePath, string encryptedFilePath)
+        public async void EncryptTextFile(string passwordFilePath, string encryptedFilePath, string originalText)
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             StringBuilder encryptedText = new StringBuilder();
-            byte[] originalTextBytes = uniencoding.GetBytes(OriginalText);
+            byte[] originalTextBytes = uniencoding.GetBytes(originalText);
             char[] originalTextChars = Encoding.Unicode.GetChars(originalTextBytes);
             char[] encryptedChars = new char[originalTextChars.Length];
             byte[] result = uniencoding.GetBytes(Password);
@@ -241,9 +237,9 @@ namespace Laba2
                 ++index;
             }
 
-            using (StreamWriter streamCrypted = new StreamWriter(encryptedFilePath))
+            using (StreamWriter streamCrypted = new StreamWriter(decryptedFilePath))
             {
-                 streamCrypted.WriteAsync(decryptedChars);
+                await streamCrypted.WriteAsync(decryptedChars);
             }
             return decryptedText.Append(decryptedChars).ToString();
         }

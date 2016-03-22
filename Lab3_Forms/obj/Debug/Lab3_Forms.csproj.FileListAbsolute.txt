@@ -1,0 +1,9 @@
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\bin\Debug\Lab3_Forms.exe.config
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\bin\Debug\Lab3_Forms.exe
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\bin\Debug\Lab3_Forms.pdb
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\obj\Debug\Lab3_Forms.csprojResolveAssemblyReference.cache
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\obj\Debug\Lab3_Forms.Form1.resources
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\obj\Debug\Lab3_Forms.Properties.Resources.resources
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\obj\Debug\Lab3_Forms.csproj.GenerateResource.Cache
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\obj\Debug\Lab3_Forms.exe
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Lab3_Forms\obj\Debug\Lab3_Forms.pdb

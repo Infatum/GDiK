@@ -1,0 +1,6 @@
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba4\bin\Debug\Laba4.exe.config
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba4\bin\Debug\Laba4.exe
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba4\bin\Debug\Laba4.pdb
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba4\obj\Debug\Laba4.csprojResolveAssemblyReference.cache
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba4\obj\Debug\Laba4.exe
+C:\Users\Ann\documents\visual studio 2015\Projects\GDiK\Laba4\obj\Debug\Laba4.pdb
