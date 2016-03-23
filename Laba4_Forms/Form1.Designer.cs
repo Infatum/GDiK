@@ -31,7 +31,7 @@
             this.textField = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chooseFileBtn = new System.Windows.Forms.Button();
-            this.claculatedSymbolsField = new System.Windows.Forms.TextBox();
+            this.calculatedSymbolsField = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.clculateSymbolsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -72,13 +72,13 @@
             this.chooseFileBtn.UseVisualStyleBackColor = false;
             this.chooseFileBtn.Click += new System.EventHandler(this.chooseFileBtn_Click);
             // 
-            // claculatedSymbolsField
+            // calculatedSymbolsField
             // 
-            this.claculatedSymbolsField.Location = new System.Drawing.Point(373, 31);
-            this.claculatedSymbolsField.Multiline = true;
-            this.claculatedSymbolsField.Name = "claculatedSymbolsField";
-            this.claculatedSymbolsField.Size = new System.Drawing.Size(279, 297);
-            this.claculatedSymbolsField.TabIndex = 3;
+            this.calculatedSymbolsField.Location = new System.Drawing.Point(373, 31);
+            this.calculatedSymbolsField.Multiline = true;
+            this.calculatedSymbolsField.Name = "calculatedSymbolsField";
+            this.calculatedSymbolsField.Size = new System.Drawing.Size(279, 297);
+            this.calculatedSymbolsField.TabIndex = 3;
             // 
             // label2
             // 
@@ -105,6 +105,7 @@
             this.clculateSymbolsBtn.TabIndex = 5;
             this.clculateSymbolsBtn.Text = "Підрахувати";
             this.clculateSymbolsBtn.UseVisualStyleBackColor = false;
+            this.clculateSymbolsBtn.Click += new System.EventHandler(this.clculateSymbolsBtn_Click);
             // 
             // Form1
             // 
@@ -116,7 +117,7 @@
             this.ClientSize = new System.Drawing.Size(663, 376);
             this.Controls.Add(this.clculateSymbolsBtn);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.claculatedSymbolsField);
+            this.Controls.Add(this.calculatedSymbolsField);
             this.Controls.Add(this.chooseFileBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textField);
@@ -132,7 +133,7 @@
         private System.Windows.Forms.TextBox textField;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button chooseFileBtn;
-        private System.Windows.Forms.TextBox claculatedSymbolsField;
+        private System.Windows.Forms.TextBox calculatedSymbolsField;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button clculateSymbolsBtn;
     }

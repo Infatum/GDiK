@@ -14,6 +14,8 @@ namespace Laba4_Forms
     public partial class Form1 : Form
     {
         private string[] text;
+        private string path;
+        private string path2 = "./result.txt";
         public Form1()
         {
             InitializeComponent();
@@ -31,12 +33,12 @@ namespace Laba4_Forms
             {
                 if (!fileDialog.CheckFileExists)
                     (File.Create(fileDialog.FileName)).Close();
-
-                this.ReadFileWithQuestions(fileDialog.FileName);
+                this.path = fileDialog.FileName;
+                this.ReadFileWithText(fileDialog.FileName);
             }
         }
 
-        public void ReadFileWithQuestions(string path)
+        public void ReadFileWithText(string path)
         {
             // 2. Прочитати файл
             UnicodeEncoding enc = new UnicodeEncoding();
@@ -49,6 +51,22 @@ namespace Laba4_Forms
                 textInfield.Append(Environment.NewLine);
             }
             this.textField.Text = textInfield.ToString();
+        }
+
+        private void clculateSymbolsBtn_Click(object sender, EventArgs e)
+        {
+            MainClass charsCount = new MainClass();
+            charsCount.CalculateLetters(path);
+            UnicodeEncoding enc = new UnicodeEncoding();
+            var calculated = File.ReadAllLines(path2, Encoding.Default);
+            StringBuilder calculatedSymbols = new StringBuilder();
+
+            foreach (var s in calculated)
+            {
+                calculatedSymbols.Append(s);
+                calculatedSymbols.Append(Environment.NewLine);
+            }
+            this.calculatedSymbolsField.Text = calculatedSymbols.ToString();
         }
     }
 }
