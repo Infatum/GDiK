@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace CharsCounter
 {
@@ -12,18 +13,16 @@ namespace CharsCounter
 
     class MainClass
     {
-        public void FileReading()
+        public int CalculateLetters(string path)
         {
             if (!File.Exists(Constants.path1))
             {
-                Console.WriteLine("Text file `" + Constants.path1 + "` does'nt exist. Exit.");
-                Console.ReadKey();
-                Environment.Exit(0);
+                MessageBox.Show("Text file `" + Constants.path1 + "` does'nt exist. Exit.");
             }
 
             Dictionary<char, int> charsCounter = new Dictionary<char, int>();
             int charsTotal = 0;
-            string text = File.ReadAllText(Constants.path1);
+            string text = File.ReadAllText(path);
             StringBuilder resultText = new StringBuilder();
 
             // Count data
@@ -50,7 +49,6 @@ namespace CharsCounter
             Console.WriteLine("Total letters: " + charsTotal);
             foreach (var item in charsCounter)
             {
-                Console.WriteLine("'{0}': {1}", item.Key, item.Value);
                 resultText.Append($"'{item.Key}'" + ": " + item.Value);
             }
             FileStream fs = new FileStream("./result.txt", FileMode.Create);
@@ -60,7 +58,7 @@ namespace CharsCounter
                 sw.Write(resultText);
             }
 
-            Console.ReadKey();
+            return charsTotal;
         }
     }
 }

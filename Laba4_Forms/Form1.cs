@@ -41,7 +41,14 @@ namespace Laba4_Forms
             // 2. Прочитати файл
             UnicodeEncoding enc = new UnicodeEncoding();
             text = File.ReadAllLines(path, Encoding.Default);
-            this.textField.Text = text.ToString();
+            StringBuilder textInfield = new StringBuilder();
+
+            foreach (var t in text)
+            {
+                textInfield.Append(t);
+                textInfield.Append(Environment.NewLine);
+            }
+            this.textField.Text = textInfield.ToString();
         }
     }
 }
