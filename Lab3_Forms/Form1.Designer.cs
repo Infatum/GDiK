@@ -51,7 +51,7 @@
             this.saveQuestions = new System.Windows.Forms.Button();
             this.saveAnswers = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.openQuestions = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Question1
@@ -222,6 +222,7 @@
             this.saveQuestions.TabIndex = 20;
             this.saveQuestions.Text = "Зберегти питання";
             this.saveQuestions.UseVisualStyleBackColor = true;
+            this.saveQuestions.Click += new System.EventHandler(this.saveQuestions_Click);
             // 
             // saveAnswers
             // 
@@ -231,6 +232,7 @@
             this.saveAnswers.TabIndex = 21;
             this.saveAnswers.Text = "Зберегти відповіді";
             this.saveAnswers.UseVisualStyleBackColor = true;
+            this.saveAnswers.Click += new System.EventHandler(this.saveAnswers_Click);
             // 
             // button1
             // 
@@ -240,15 +242,17 @@
             this.button1.TabIndex = 23;
             this.button1.Text = "Відкрити відповіді";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.openAnswers_Click);
             // 
-            // button2
+            // openQuestions
             // 
-            this.button2.Location = new System.Drawing.Point(274, 480);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 47);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "Відкрити питання";
-            this.button2.UseVisualStyleBackColor = true;
+            this.openQuestions.Location = new System.Drawing.Point(274, 480);
+            this.openQuestions.Name = "openQuestions";
+            this.openQuestions.Size = new System.Drawing.Size(98, 47);
+            this.openQuestions.TabIndex = 22;
+            this.openQuestions.Text = "Відкрити питання";
+            this.openQuestions.UseVisualStyleBackColor = true;
+            this.openQuestions.Click += new System.EventHandler(this.openQuestions_Click);
             // 
             // Form1
             // 
@@ -256,7 +260,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 548);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.openQuestions);
             this.Controls.Add(this.saveAnswers);
             this.Controls.Add(this.saveQuestions);
             this.Controls.Add(this.label9);
@@ -311,7 +315,7 @@
         private System.Windows.Forms.Button saveQuestions;
         private System.Windows.Forms.Button saveAnswers;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button openQuestions;
     }
 }
 
