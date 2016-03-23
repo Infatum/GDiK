@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba4", "Laba4\Laba4.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3_Forms", "Lab3_Forms\Lab3_Forms.csproj", "{7567A273-87CA-45DA-950A-A9D3E7F1BA8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laba4_Forms", "Laba4_Forms\Laba4_Forms.csproj", "{9A30912F-C176-40C4-9252-00584EA3526E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7567A273-87CA-45DA-950A-A9D3E7F1BA8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7567A273-87CA-45DA-950A-A9D3E7F1BA8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7567A273-87CA-45DA-950A-A9D3E7F1BA8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A30912F-C176-40C4-9252-00584EA3526E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A30912F-C176-40C4-9252-00584EA3526E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A30912F-C176-40C4-9252-00584EA3526E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A30912F-C176-40C4-9252-00584EA3526E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

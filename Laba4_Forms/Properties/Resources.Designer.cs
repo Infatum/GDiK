@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lab3_Forms.Properties {
+namespace Laba4_Forms.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Lab3_Forms.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lab3_Forms.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Laba4_Forms.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,19 +63,9 @@ namespace Lab3_Forms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _120eedc3_5605_4b0b_8391_ae5f1f0b5b47 {
+        internal static System.Drawing.Bitmap lol {
             get {
-                object obj = ResourceManager.GetObject("120eedc3-5605-4b0b-8391-ae5f1f0b5b47", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _SAM2729__1_ {
-            get {
-                object obj = ResourceManager.GetObject("_SAM2729 (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("lol", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

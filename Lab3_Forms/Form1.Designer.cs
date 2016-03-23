@@ -58,7 +58,7 @@
             // 
             this.Question1.Location = new System.Drawing.Point(12, 29);
             this.Question1.Name = "Question1";
-            this.Question1.Size = new System.Drawing.Size(769, 20);
+            this.Question1.Size = new System.Drawing.Size(670, 20);
             this.Question1.TabIndex = 0;
             // 
             // label1
@@ -83,7 +83,7 @@
             // 
             this.Answer1.Location = new System.Drawing.Point(12, 76);
             this.Answer1.Name = "Answer1";
-            this.Answer1.Size = new System.Drawing.Size(769, 20);
+            this.Answer1.Size = new System.Drawing.Size(670, 20);
             this.Answer1.TabIndex = 2;
             // 
             // label3
@@ -99,7 +99,7 @@
             // 
             this.Answer2.Location = new System.Drawing.Point(12, 167);
             this.Answer2.Name = "Answer2";
-            this.Answer2.Size = new System.Drawing.Size(769, 20);
+            this.Answer2.Size = new System.Drawing.Size(670, 20);
             this.Answer2.TabIndex = 6;
             // 
             // label4
@@ -115,7 +115,7 @@
             // 
             this.Question2.Location = new System.Drawing.Point(12, 120);
             this.Question2.Name = "Question2";
-            this.Question2.Size = new System.Drawing.Size(769, 20);
+            this.Question2.Size = new System.Drawing.Size(670, 20);
             this.Question2.TabIndex = 4;
             // 
             // label5
@@ -131,7 +131,7 @@
             // 
             this.Answer3.Location = new System.Drawing.Point(12, 261);
             this.Answer3.Name = "Answer3";
-            this.Answer3.Size = new System.Drawing.Size(769, 20);
+            this.Answer3.Size = new System.Drawing.Size(670, 20);
             this.Answer3.TabIndex = 10;
             // 
             // label6
@@ -147,7 +147,7 @@
             // 
             this.Question3.Location = new System.Drawing.Point(12, 214);
             this.Question3.Name = "Question3";
-            this.Question3.Size = new System.Drawing.Size(769, 20);
+            this.Question3.Size = new System.Drawing.Size(670, 20);
             this.Question3.TabIndex = 8;
             // 
             // label12
@@ -163,7 +163,7 @@
             // 
             this.Question4.Location = new System.Drawing.Point(12, 308);
             this.Question4.Name = "Question4";
-            this.Question4.Size = new System.Drawing.Size(769, 20);
+            this.Question4.Size = new System.Drawing.Size(670, 20);
             this.Question4.TabIndex = 12;
             // 
             // label7
@@ -179,7 +179,7 @@
             // 
             this.Question5.Location = new System.Drawing.Point(12, 399);
             this.Question5.Name = "Question5";
-            this.Question5.Size = new System.Drawing.Size(769, 20);
+            this.Question5.Size = new System.Drawing.Size(670, 20);
             this.Question5.TabIndex = 16;
             // 
             // label8
@@ -195,7 +195,7 @@
             // 
             this.Answer4.Location = new System.Drawing.Point(12, 352);
             this.Answer4.Name = "Answer4";
-            this.Answer4.Size = new System.Drawing.Size(769, 20);
+            this.Answer4.Size = new System.Drawing.Size(670, 20);
             this.Answer4.TabIndex = 14;
             // 
             // label9
@@ -211,12 +211,12 @@
             // 
             this.Answer5.Location = new System.Drawing.Point(15, 441);
             this.Answer5.Name = "Answer5";
-            this.Answer5.Size = new System.Drawing.Size(769, 20);
+            this.Answer5.Size = new System.Drawing.Size(670, 20);
             this.Answer5.TabIndex = 18;
             // 
             // saveQuestions
             // 
-            this.saveQuestions.Location = new System.Drawing.Point(137, 480);
+            this.saveQuestions.Location = new System.Drawing.Point(32, 487);
             this.saveQuestions.Name = "saveQuestions";
             this.saveQuestions.Size = new System.Drawing.Size(98, 47);
             this.saveQuestions.TabIndex = 20;
@@ -226,7 +226,7 @@
             // 
             // saveAnswers
             // 
-            this.saveAnswers.Location = new System.Drawing.Point(407, 480);
+            this.saveAnswers.Location = new System.Drawing.Point(330, 487);
             this.saveAnswers.Name = "saveAnswers";
             this.saveAnswers.Size = new System.Drawing.Size(98, 47);
             this.saveAnswers.TabIndex = 21;
@@ -236,7 +236,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(544, 480);
+            this.button1.Location = new System.Drawing.Point(485, 487);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 47);
             this.button1.TabIndex = 23;
@@ -246,7 +246,7 @@
             // 
             // openQuestions
             // 
-            this.openQuestions.Location = new System.Drawing.Point(274, 480);
+            this.openQuestions.Location = new System.Drawing.Point(182, 486);
             this.openQuestions.Name = "openQuestions";
             this.openQuestions.Size = new System.Drawing.Size(98, 47);
             this.openQuestions.TabIndex = 22;
@@ -258,7 +258,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 548);
+            this.BackgroundImage = global::Lab3_Forms.Properties.Resources._120eedc3_5605_4b0b_8391_ae5f1f0b5b47;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(690, 546);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.openQuestions);
             this.Controls.Add(this.saveAnswers);
@@ -283,6 +285,7 @@
             this.Controls.Add(this.Answer1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Question1);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

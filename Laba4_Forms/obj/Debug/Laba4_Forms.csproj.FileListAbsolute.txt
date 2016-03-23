@@ -1,0 +1,9 @@
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\bin\Debug\Laba4_Forms.exe.config
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\obj\Debug\Laba4_Forms.csprojResolveAssemblyReference.cache
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\obj\Debug\Laba4_Forms.Form1.resources
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\obj\Debug\Laba4_Forms.Properties.Resources.resources
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\obj\Debug\Laba4_Forms.csproj.GenerateResource.Cache
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\bin\Debug\Laba4_Forms.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\bin\Debug\Laba4_Forms.pdb
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\obj\Debug\Laba4_Forms.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4_Forms\obj\Debug\Laba4_Forms.pdb
