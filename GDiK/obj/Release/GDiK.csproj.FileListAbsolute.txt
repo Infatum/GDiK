@@ -1,0 +1,5 @@
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Release\GDiK.exe.config
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Release\GDiK.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Release\GDiK.pdb
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\obj\Release\GDiK.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\obj\Release\GDiK.pdb

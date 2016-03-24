@@ -1,0 +1,5 @@
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4\bin\Release\Laba4.exe.config
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4\bin\Release\Laba4.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4\bin\Release\Laba4.pdb
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4\obj\Release\Laba4.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba4\obj\Release\Laba4.pdb

@@ -1,0 +1,13 @@
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\bin\Release\Laba2.exe.config
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\bin\Release\Laba2.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\bin\Release\Laba2.pdb
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\MainWindow.g.cs
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\App.g.cs
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\Laba2_MarkupCompile.cache
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\Laba2_MarkupCompile.lref
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\MainWindow.baml
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\Laba2.g.resources
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\Laba2.Properties.Resources.resources
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\Laba2.csproj.GenerateResource.Cache
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\Laba2.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\Laba2\obj\Release\Laba2.pdb

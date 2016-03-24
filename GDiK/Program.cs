@@ -33,11 +33,6 @@ namespace CesarCryptography
                 }
 
                 string[] inputLines = inputLinesList.ToArray();
-
-                using (File.Create(Constants.path1))
-                {
-
-                }
                 
                 File.WriteAllLines(Constants.path1, inputLines);
            
@@ -47,7 +42,7 @@ namespace CesarCryptography
 
             // Get offset
             GetOffset:
-            Console.Write("Offset (def: " + Constants.DEF_OFFSET + "): ");
+            Console.Write("Enter Offset for encryprion (def: " + Constants.DEF_OFFSET + "): ");
             string strOffset = Console.ReadLine();
             int offset = Constants.DEF_OFFSET;
             if (strOffset != String.Empty)
@@ -80,7 +75,8 @@ namespace CesarCryptography
             // Create file if not exist
             if (File.Exists(Constants.path2))
             {
-                File.Create(Constants.path2);
+                (File.Create(Constants.path2)).Close();
+
             }
 
             // Write data to file
@@ -104,7 +100,7 @@ namespace CesarCryptography
                 // Create file if not exist
                 if (File.Exists(Constants.path3))
                 {
-                    File.Create(Constants.path3);
+                    (File.Create(Constants.path3)).Close();
                 }
 
                 // Write data to file
