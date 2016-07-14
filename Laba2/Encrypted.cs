@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
@@ -15,7 +14,7 @@ namespace Laba2
             {'а', 33}, {'б', 34}, {'в', 35}, {'г', 36}, {'д', 37}, {'е', 38}, {'ё', 39}, {'ж', 40}, {'з', 41}, {'и', 42}, {'й', 43}, {'к', 44}, {'л', 45}, {'м', 46}, {'н', 47}, {'о', 48}, {'п', 49}, {'р', 50}, {'с', 51}, {'т', 52}, {'у', 53}, {'ф', 54}, {'х', 55}, {'ц', 56}, {'ч', 57}, {'ш', 58}, {'щ', 59},{'ы', 60}, {'ь', 61}, {'э', 62}, {'ю', 63}, {'я', 64},
             {'A', 65}, {'B', 66}, {'C', 67}, {'D', 68}, {'E', 69}, {'F', 70}, {'G', 71}, {'H', 72}, {'I', 73}, {'J', 74}, {'K', 75}, {'L', 76}, {'M', 77}, {'N', 78}, {'O', 79}, {'P', 80}, {'Q', 81}, {'R', 82}, {'S', 83}, {'T', 84}, {'U', 85}, {'V', 86}, {'W', 87}, {'X', 88}, {'Y', 89}, {'Z', 90},
             {'a', 91}, {'b', 92}, {'c', 93}, {'d', 94}, {'e', 95}, {'f', 96}, {'g', 97}, {'h', 98}, {'i', 99}, {'j', 100}, {'k', 101}, {'l', 102}, {'m', 103}, {'n', 104}, {'o', 105}, {'p', 106}, {'q', 107}, {'r', 108}, {'s', 109}, {'t', 110}, {'u', 111}, {'v', 112}, {'w', 113}, {'x', 114}, {'y', 115}, {'z', 116},
-            {'—', 117 }, {'\'', 118 }, {'!', 119 }, {',', 120 }, {':', 121 }, {';', 123 }, {'.', 124 }, {'-', 125 }
+            {'—', 117 }, {'\'', 118 }, {'!', 119 }, {',', 120 }, {':', 121 }, {';', 123 }, {'.', 124 }, {'-', 125 }, {'(', 126 } , {')', 127 }, {'?', 128 }, {'\"', 129 }
         };
         private string OriginalText { get; set; }
         public string EncryptedText { get; set; }
@@ -48,12 +47,19 @@ namespace Laba2
         {
             try
             {
-                FileStream originalFile = new FileStream(originalFilePath, FileMode.CreateNew);
-                FileStream encryptedFile = new FileStream(encryptedFilePath, FileMode.CreateNew);
-                FileStream passwordFile = new FileStream(passwordFilePath, FileMode.CreateNew);
-                originalFile.Dispose();
-                encryptedFile.Dispose();
-                passwordFile.Dispose();
+                using (FileStream originalFile = new FileStream(originalFilePath, FileMode.CreateNew))
+                {
+
+                }
+                using (FileStream encryptedFile = new FileStream(encryptedFilePath, FileMode.CreateNew))
+                {
+
+                }
+                using (FileStream passwordFile = new FileStream(passwordFilePath, FileMode.CreateNew))
+                {
+
+                }
+               
             }
             catch (Exception ex)
             {
@@ -61,7 +67,7 @@ namespace Laba2
             }
         }
 
-        public async void WriteTextToFiles(string originalFilePath, string originalText)
+        public void WriteTextToFiles(string originalFilePath, string originalText)
         {
             try
             {
@@ -72,7 +78,7 @@ namespace Laba2
 
                 using (StreamWriter wr = new StreamWriter(originalFilePath, false))
                 {
-                    await wr.WriteAsync(originalText);
+                     wr.Write(originalText);
                 }
             }
             catch (Exception ex)
@@ -81,7 +87,7 @@ namespace Laba2
             }
         }
 
-        public async void WritePasswordToFile(string password, string passwordPath)
+        public void WritePasswordToFile(string password, string passwordPath)
         {
             Password = password;
             PasswordFilePath = passwordPath;
@@ -91,44 +97,44 @@ namespace Laba2
 
             using (StreamWriter wr = new StreamWriter(passwordPath, false))
             {
-                await wr.WriteAsync(paswd);
+                wr.Write(paswd);
             }
         }
 
-        public async Task<int> OriginalTextFileByteCount(string originalFilePath)
+        public int OriginalTextFileByteCount(string originalFilePath)
         {
             int asciSymb = 0;
 
             using (StreamReader sr = new StreamReader(originalFilePath))
             {
                 var s = sr.ReadToEnd();
-                Task<int> ts = sr.ReadAsync(s.ToCharArray(), 0, s.Length);
-                asciSymb = await ts;
+                int ts = sr.Read(s.ToCharArray(), 0, s.Length);
+                asciSymb = ts;
             }
             return asciSymb;
         }
 
-        public async Task<string> ReadPasswordFile(string path)
+        public string ReadPasswordFile(string path)
         {
             string Text = null;
 
             using (StreamReader rd = new StreamReader(path))
             {
-                Task<string> ts = rd.ReadToEndAsync();
-                Text = await ts;
+                string ts = rd.ReadToEnd();
+                Text = ts;
             }
             return Text;
         }
 
-        public async Task<int> PasswordFileCharCount(string path)
+        public int PasswordFileCharCount(string path)
         {
             int asciSymb = 0;
 
             using (StreamReader sr = new StreamReader(path))
             {
                 var s = sr.ReadToEnd();
-                Task<int> ts = sr.ReadAsync(s.ToCharArray(), 0, s.Length);
-                asciSymb = await ts;
+                int ts = sr.Read(s.ToCharArray(), 0, s.Length);
+                asciSymb = ts;
             }
             return asciSymb;
         }
@@ -144,13 +150,12 @@ namespace Laba2
             return result;
         }
 
-        public async Task<string> EncryptTextFile(string passwordFilePath, string encryptedFilePath, string originalText)
+        public string EncryptTextFile(string passwordFilePath, string encryptedFilePath, string originalText)
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             StringBuilder encryptedText = new StringBuilder();
-            byte[] originalTextBytes = uniencoding.GetBytes(originalText);
-            char[] originalTextChars = Encoding.Unicode.GetChars(originalTextBytes);
-            char[] encryptedChars = new char[originalTextChars.Length];
+          
+            char[] encryptedChars = new char[originalText.Length];
             byte[] result = uniencoding.GetBytes(Password);
             char[] paswd = Encoding.Unicode.GetChars(result);
             int index = 0;
@@ -159,7 +164,7 @@ namespace Laba2
             int tmpKeyCharNumber = -1;
             int tmpCryptedCharNumber = -1;
 
-            foreach (var c in originalTextChars)
+            foreach (var c in originalText)
             {
                 if (alphabet.ContainsKey(c))
                 {
@@ -182,7 +187,7 @@ namespace Laba2
             }
             using (StreamWriter streamCrypted = new StreamWriter(encryptedFilePath))
             {
-                await streamCrypted.WriteAsync(encryptedChars);
+                streamCrypted.Write(encryptedChars);
             }
             encryptedText.Append(encryptedChars);
             this.EncryptedText = encryptedText.ToString();
@@ -202,7 +207,7 @@ namespace Laba2
             return escape;
         }
 
-        public async Task<string> DecryptTextFile(string encryptedFilePath, string decryptedFilePath)
+        public string DecryptTextFile(string encryptedFilePath, string decryptedFilePath)
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             StringBuilder decryptedText = new StringBuilder();
@@ -241,7 +246,7 @@ namespace Laba2
 
             using (StreamWriter streamCrypted = new StreamWriter(decryptedFilePath))
             {
-                await streamCrypted.WriteAsync(decryptedChars);
+                 streamCrypted.Write(decryptedChars);
             }
             return decryptedText.Append(decryptedChars).ToString();
         }

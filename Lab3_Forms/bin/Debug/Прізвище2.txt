@@ -1,5 +1,5 @@
 25
 так
-на програмыста
+на програміста
 так, вже вивчаю
-c#, Javascript, Python(basics), HTML, CSS, Java(basics)
+с#, c++, HTML, CSS, Javascript

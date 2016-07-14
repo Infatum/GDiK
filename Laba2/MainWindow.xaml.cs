@@ -1,19 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.IO;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
 
 namespace Laba2
@@ -117,11 +106,11 @@ namespace Laba2
                 return;
             }
             file.WritePasswordToFile(this.Password_Text.Text, passwordFileName);
-            this.Encrypted_Decrypted_TextBox.Text = file.EncryptTextFile(passwordFileName, encryptedFileName, fileContent.Text).Result;
+            this.Encrypted_Decrypted_TextBox.Text = file.EncryptTextFile(passwordFileName, encryptedFileName, fileContent.Text);
 
         }
 
-        private async void Decrypt_Button_Click(object sender, RoutedEventArgs e)
+        private void Decrypt_Button_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(decryptedFileName))
             {
@@ -133,7 +122,7 @@ namespace Laba2
                     FileStream decryptedFile = new FileStream(decryptedFileName, FileMode.CreateNew);
                     decryptedFile.Dispose();
                 }
-               this.Encrypted_Decrypted_TextBox.Text = await file.DecryptTextFile(encryptedFileName, decryptedFileName);
+               this.Encrypted_Decrypted_TextBox.Text =  file.DecryptTextFile(encryptedFileName, decryptedFileName);
         }
 
         private void fileChanged(object sender, SelectionChangedEventArgs e)
