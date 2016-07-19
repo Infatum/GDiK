@@ -101,17 +101,10 @@ namespace Laba2
             }
         }
 
-        public int OriginalTextFileByteCount(string originalFilePath)
+        public long OriginalTextFileByteCount(string originalFilePath)
         {
-            int asciSymb = 0;
-
-            using (StreamReader sr = new StreamReader(originalFilePath))
-            {
-                var s = sr.ReadToEnd();
-                int ts = sr.Read(s.ToCharArray(), 0, s.Length);
-                asciSymb = ts;
-            }
-            return asciSymb;
+            FileInfo info = new FileInfo(originalFilePath);
+            return info.Length;
         }
 
         public string ReadPasswordFile(string path)
