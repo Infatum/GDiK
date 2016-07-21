@@ -149,9 +149,22 @@ namespace Laba2
             EncryptedFilePath = encryptedFilePath;
             OriginalText = originalText;
 
-            var t = await Task<string>.Run<string>(() => { return EncryptTextFile(); });
-            WriteEncryptedTextAsync(t.ToCharArray(), EncryptedFilePath);
-            return t;
+            var encryption = await Task<string>.Run<string>(() => {
+                return EncryptTextFile();
+            });
+            WriteEncryptedDecryptedTextAsync(encryption.ToCharArray(), EncryptedFilePath);
+            return encryption;
+        }
+
+        public async Task<string> DecryptTextFileAsync(string decryptedFilePath)
+        {
+            DecryptedPath = decryptedFilePath;
+
+            var decryption = await Task<string>.Run<string>(() => {
+                return DecryptTextFile();
+            });
+            WriteEncryptedDecryptedTextAsync(decryption.ToCharArray(), DecryptedPath);
+            return decryption;
         }
         private string EncryptTextFile()
         {
@@ -160,7 +173,7 @@ namespace Laba2
 
             char[] encryptedChars = new char[OriginalText.Length];
             byte[] result = uniencoding.GetBytes(Password);
-            char[] paswd = Encoding.Unicode.GetChars(result);
+            char[] password = Encoding.Unicode.GetChars(result);
             int index = 0;
             int keyCarret = 0;
             int tmpCharNumber = -1;
@@ -172,7 +185,7 @@ namespace Laba2
                 if (alphabet.ContainsKey(c))
                 {
                     tmpCharNumber = alphabet[c]; //Gets the current index of a character
-                    tmpKeyCharNumber = alphabet[paswd[keyCarret % paswd.Length]];//Get index of current password character
+                    tmpKeyCharNumber = alphabet[password[keyCarret % password.Length]];//Get index of current password character
                     tmpCryptedCharNumber = (tmpCharNumber + tmpKeyCharNumber);
 
                     if (tmpCryptedCharNumber > alphabet.Count)
@@ -194,11 +207,11 @@ namespace Laba2
             return EncryptedText;
         }
 
-        private async void WriteEncryptedTextAsync(char[] encryptedChars, string encryptedFilePath)
+        private async void WriteEncryptedDecryptedTextAsync(char[] text, string filePath)
         {
-            using (StreamWriter streamCrypted = new StreamWriter(encryptedFilePath))
+            using (StreamWriter streamCrypted = new StreamWriter(filePath))
             {
-                await streamCrypted.WriteAsync(encryptedChars);
+                await streamCrypted.WriteAsync(text);
             }
         }
 
@@ -215,15 +228,14 @@ namespace Laba2
             return escape;
         }
 
-        public string DecryptTextFile(string encryptedFilePath, string decryptedFilePath)
+        private string DecryptTextFile()
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             StringBuilder decryptedText = new StringBuilder();
-            byte[] encryptedTextBytes = uniencoding.GetBytes(EncryptedText);
-            char[] encryptedTextChars = Encoding.Unicode.GetChars(encryptedTextBytes);
+            
+            char[] encryptedTextChars = EncryptedText.ToCharArray();
             char[] decryptedChars = new char[encryptedTextChars.Length];
-            byte[] result = uniencoding.GetBytes(Password);
-            char[] paswd = Encoding.Unicode.GetChars(result);
+            char[] password = Password.ToCharArray();
             int index = 0;
             int keyCarret = 0;
             int tmpCharNumber = -1;
@@ -234,13 +246,13 @@ namespace Laba2
             {
                 if (alphabet.ContainsKey(c))
                 {
-                    tmpCharNumber = alphabet[c]; //Gets the current index of a character
-                    tmpKeyCharNumber = alphabet[paswd[keyCarret % paswd.Length]];//Get index of current password character
+                    tmpCharNumber = alphabet[c]; 
+                    tmpKeyCharNumber = alphabet[password[keyCarret % password.Length]];
                     tmpCryptedCharNumber = (tmpCharNumber - tmpKeyCharNumber);
 
                     if (tmpCryptedCharNumber < 1)
                     {
-                        tmpCryptedCharNumber += alphabet.Count;//Encrupt current char in text with character from password
+                        tmpCryptedCharNumber += alphabet.Count;
 
                     }
                     decryptedChars[index] = GetKeyByValue(tmpCryptedCharNumber);
@@ -250,11 +262,6 @@ namespace Laba2
                     decryptedChars[index] = c;
                 }
                 ++index;
-            }
-
-            using (StreamWriter streamCrypted = new StreamWriter(decryptedFilePath))
-            {
-                streamCrypted.Write(decryptedChars);
             }
             return decryptedText.Append(decryptedChars).ToString();
         }

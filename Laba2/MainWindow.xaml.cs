@@ -111,7 +111,7 @@ namespace Laba2
 
         }
 
-        private void Decrypt_Button_Click(object sender, RoutedEventArgs e)
+        private async void Decrypt_Button_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(decryptedFileName))
             {
@@ -123,7 +123,7 @@ namespace Laba2
                 FileStream decryptedFile = new FileStream(decryptedFileName, FileMode.CreateNew);
                 decryptedFile.Dispose();
             }
-            this.Encrypted_Decrypted_TextBox.Text = file.DecryptTextFile(encryptedFileName, decryptedFileName);
+            this.Encrypted_Decrypted_TextBox.Text = await file.DecryptTextFileAsync(decryptedFileName);
         }
 
         private void fileChanged(object sender, SelectionChangedEventArgs e)
