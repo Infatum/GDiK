@@ -32,6 +32,11 @@ namespace Laba2
             {
                 CreateFile_btn.IsEnabled = false;
             }
+            LoadFilesFromDirectory();
+        }
+
+        private void LoadFilesFromDirectory()
+        {
             if (Directory.Exists(directoryPath))
             {
                 filesinDirAll = Directory.GetFiles(directoryPath);
@@ -49,10 +54,8 @@ namespace Laba2
                 }
                 file = new Encrypted();
                 this.DataContext = this;
-
             }
         }
-
         private void NameChanged(object sender, TextChangedEventArgs e)
         {
             CreateFile_btn.IsEnabled = true;
@@ -62,6 +65,7 @@ namespace Laba2
         {
 
             CreateFiles();
+
         }
 
         private void CreateFiles()
@@ -76,6 +80,7 @@ namespace Laba2
             passwordFileName = directoryPath + '/' + fileName.Text + "_Password" + ".txt";
             file = new Encrypted(fileContent.Text, filename);
             file.CreateEmptyFiles(filename, encryptedFileName, passwordFileName);
+            LoadFilesFromDirectory();
         }
 
         private void Save_File_Click(object sender, RoutedEventArgs e)
