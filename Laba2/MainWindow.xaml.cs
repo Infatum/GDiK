@@ -97,16 +97,17 @@ namespace Laba2
             }
         }
 
-        private void Encrypt_Button_Click(object sender, RoutedEventArgs e)
+        private async void Encrypt_Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (filename == null)
             {
                 MessageBox.Show("Create or choose file first");
                 return;
             }
             file.WritePasswordToFile(this.Password_Text.Text, passwordFileName);
-            this.Encrypted_Decrypted_TextBox.Text = file.EncryptTextFile(passwordFileName, encryptedFileName, fileContent.Text);
+            var result = await file.EncryptTextAsync(passwordFileName, encryptedFileName, fileContent.Text);
+            this.Encrypted_Decrypted_TextBox.Text = result;
 
         }
 
@@ -114,15 +115,15 @@ namespace Laba2
         {
             if (String.IsNullOrEmpty(decryptedFileName))
             {
-                decryptedFileName =  fileName.Text.Replace(".txt", "_Decrypted.txt");
+                decryptedFileName = fileName.Text.Replace(".txt", "_Decrypted.txt");
             }
-            
-                if (!File.Exists(decryptedFileName))
-                {
-                    FileStream decryptedFile = new FileStream(decryptedFileName, FileMode.CreateNew);
-                    decryptedFile.Dispose();
-                }
-               this.Encrypted_Decrypted_TextBox.Text =  file.DecryptTextFile(encryptedFileName, decryptedFileName);
+
+            if (!File.Exists(decryptedFileName))
+            {
+                FileStream decryptedFile = new FileStream(decryptedFileName, FileMode.CreateNew);
+                decryptedFile.Dispose();
+            }
+            this.Encrypted_Decrypted_TextBox.Text = file.DecryptTextFile(encryptedFileName, decryptedFileName);
         }
 
         private void fileChanged(object sender, SelectionChangedEventArgs e)
