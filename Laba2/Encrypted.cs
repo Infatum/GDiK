@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Laba2
@@ -12,9 +13,9 @@ namespace Laba2
         private Dictionary<char, int> alphabet = new Dictionary<char, int>()
         {
             {'А', 1}, {'Б', 2}, {'В', 3}, {'Г', 4}, {'Д', 5}, {'Е', 6}, {'Ё', 7}, {'Ж', 8}, {'З', 9}, {'И', 10}, {'Й', 11}, {'К', 12}, {'Л', 13}, {'М', 14}, {'Н', 15}, {'О', 16}, {'П', 17}, {'Р', 18}, {'С', 19}, {'Т', 20}, {'У', 21}, {'Ф', 22}, {'Х', 23}, {'Ц', 24}, {'Ч', 25}, {'Ш', 26}, {'Щ', 27},{'Ы', 28}, {'Ь', 29}, {'Э', 30}, {'Ю', 31}, {'Я', 32},
-            {'а', 33}, {'б', 34}, {'в', 35}, {'г', 36}, {'д', 37}, {'е', 38}, {'ё', 39}, {'ж', 40}, {'з', 41}, {'и', 42}, {'й', 43}, {'к', 44}, {'л', 45}, {'м', 46}, {'н', 47}, {'о', 48}, {'п', 49}, {'р', 50}, {'с', 51}, {'т', 52}, {'у', 53}, {'ф', 54}, {'х', 55}, {'ц', 56}, {'ч', 57}, {'ш', 58}, {'щ', 59},{'ы', 60}, {'ь', 61}, {'э', 62}, {'ю', 63}, {'я', 64},
+            {'a', 33}, {'б', 34}, {'в', 35}, {'г', 36}, {'д', 37}, {'е', 38}, {'ё', 39}, {'ж', 40}, {'з', 41}, {'и', 42}, {'й', 43}, {'к', 44}, {'л', 45}, {'м', 46}, {'н', 47}, {'о', 48}, {'п', 49}, {'р', 50}, {'с', 51}, {'т', 52}, {'у', 53}, {'ф', 54}, {'х', 55}, {'ц', 56}, {'ч', 57}, {'ш', 58}, {'щ', 59},{'ы', 60}, {'ь', 61}, {'э', 62}, {'ю', 63}, {'я', 64},
             {'A', 65}, {'B', 66}, {'C', 67}, {'D', 68}, {'E', 69}, {'F', 70}, {'G', 71}, {'H', 72}, {'I', 73}, {'J', 74}, {'K', 75}, {'L', 76}, {'M', 77}, {'N', 78}, {'O', 79}, {'P', 80}, {'Q', 81}, {'R', 82}, {'S', 83}, {'T', 84}, {'U', 85}, {'V', 86}, {'W', 87}, {'X', 88}, {'Y', 89}, {'Z', 90},
-            {'a', 91}, {'b', 92}, {'c', 93}, {'d', 94}, {'e', 95}, {'f', 96}, {'g', 97}, {'h', 98}, {'i', 99}, {'j', 100}, {'k', 101}, {'l', 102}, {'m', 103}, {'n', 104}, {'o', 105}, {'p', 106}, {'q', 107}, {'r', 108}, {'s', 109}, {'t', 110}, {'u', 111}, {'v', 112}, {'w', 113}, {'x', 114}, {'y', 115}, {'z', 116},
+            {'а', 91}, {'b', 92}, {'c', 93}, {'d', 94}, {'e', 95}, {'f', 96}, {'g', 97}, {'h', 98}, {'i', 99}, {'j', 100}, {'k', 101}, {'l', 102}, {'m', 103}, {'n', 104}, {'o', 105}, {'p', 106}, {'q', 107}, {'r', 108}, {'s', 109}, {'t', 110}, {'u', 111}, {'v', 112}, {'w', 113}, {'x', 114}, {'y', 115}, {'z', 116},
             {'—', 117 }, {'\'', 118 }, {'!', 119 }, {',', 120 }, {':', 121 }, {';', 123 }, {'.', 124 }, {'-', 125 }, {'(', 126 } , {')', 127 }, {'?', 128 }, {'\"', 129 }
         };
         private string OriginalText { get; set; }
@@ -149,29 +150,56 @@ namespace Laba2
             EncryptedFilePath = encryptedFilePath;
             OriginalText = originalText;
 
-            var encryption = await Task<string>.Run<string>(() => {
-                return EncryptTextFile();
-            });
-            WriteEncryptedDecryptedTextAsync(encryption.ToCharArray(), EncryptedFilePath);
+            float chunkCharIndex = OriginalText.Length / 2;
+            var firstChunkOfText = OriginalText.Substring(0,(int)chunkCharIndex - 1);
+            var secondChunkOfText = OriginalText.Substring((int)chunkCharIndex - 1);
+
+            var tf = new TaskFactory<string>(TaskCreationOptions.AttachedToParent, TaskContinuationOptions.ExecuteSynchronously);
+            string encryption = "";
+            string res = "";
+
+            var encrTasks = new[]
+                {
+                tf.StartNew(() => EncryptTextFile(firstChunkOfText)),
+                tf.StartNew(() => EncryptTextFile(secondChunkOfText))
+                };
+
+            try
+            {
+                
+                encryption = await tf.ContinueWhenAll(encrTasks, completedEncryption =>
+                {
+                    res = encrTasks[0].Result + encrTasks[1].Result;
+                    return res;
+                });
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            this.EncryptedText = res;
             return encryption;
+
+
         }
 
         public async Task<string> DecryptTextFileAsync(string decryptedFilePath)
         {
-            DecryptedPath = decryptedFilePath;
+                DecryptedPath = decryptedFilePath;
 
-            var decryption = await Task<string>.Run<string>(() => {
-                return DecryptTextFile();
-            });
-            WriteEncryptedDecryptedTextAsync(decryption.ToCharArray(), DecryptedPath);
-            return decryption;
+                var decryption = await Task<string>.Run<string>(() => {
+                    return DecryptTextFile();
+                });
+                WriteEncryptedDecryptedTextAsync(decryption.ToCharArray(), DecryptedPath);
+                return decryption;
         }
-        private string EncryptTextFile()
+        private string EncryptTextFile(string originalTextChunk)
         {
             UnicodeEncoding uniencoding = new UnicodeEncoding();
             StringBuilder encryptedText = new StringBuilder();
 
-            char[] encryptedChars = new char[OriginalText.Length];
+            char[] encryptedChars = new char[originalTextChunk.Length];
             byte[] result = uniencoding.GetBytes(Password);
             char[] password = Encoding.Unicode.GetChars(result);
             int index = 0;
@@ -180,7 +208,7 @@ namespace Laba2
             int tmpKeyCharNumber = -1;
             int tmpCryptedCharNumber = -1;
 
-            foreach (var c in OriginalText)
+            foreach (var c in originalTextChunk)
             {
                 if (alphabet.ContainsKey(c))
                 {
@@ -203,8 +231,7 @@ namespace Laba2
             }
 
             encryptedText.Append(encryptedChars);
-            this.EncryptedText = encryptedText.ToString();
-            return EncryptedText;
+            return encryptedText.ToString();
         }
 
         private async void WriteEncryptedDecryptedTextAsync(char[] text, string filePath)
