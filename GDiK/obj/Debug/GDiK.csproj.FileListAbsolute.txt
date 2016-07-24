@@ -1,6 +1,7 @@
-c:\users\ann\documents\visual studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.exe.config
-c:\users\ann\documents\visual studio 2015\Projects\GDiK\GDiK\obj\Debug\GDiK.csprojResolveAssemblyReference.cache
-c:\users\ann\documents\visual studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.exe
-c:\users\ann\documents\visual studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.pdb
-c:\users\ann\documents\visual studio 2015\Projects\GDiK\GDiK\obj\Debug\GDiK.exe
-c:\users\ann\documents\visual studio 2015\Projects\GDiK\GDiK\obj\Debug\GDiK.pdb
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.exe.config
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.pdb
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.exe.CodeAnalysisLog.xml
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\bin\Debug\GDiK.exe.lastcodeanalysissucceeded
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\obj\Debug\GDiK.exe
+C:\Users\Ann\Documents\Visual Studio 2015\Projects\GDiK\GDiK\obj\Debug\GDiK.pdb

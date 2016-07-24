@@ -5,11 +5,13 @@ using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Laba2
 {
     public class Encrypted
     {
+        private CancellationTokenSource _cancelOperation;
         private Dictionary<char, int> alphabet = new Dictionary<char, int>()
         {
             {'А', 1}, {'Б', 2}, {'В', 3}, {'Г', 4}, {'Д', 5}, {'Е', 6}, {'Ё', 7}, {'Ж', 8}, {'З', 9}, {'И', 10}, {'Й', 11}, {'К', 12}, {'Л', 13}, {'М', 14}, {'Н', 15}, {'О', 16}, {'П', 17}, {'Р', 18}, {'С', 19}, {'Т', 20}, {'У', 21}, {'Ф', 22}, {'Х', 23}, {'Ц', 24}, {'Ч', 25}, {'Ш', 26}, {'Щ', 27},{'Ы', 28}, {'Ь', 29}, {'Э', 30}, {'Ю', 31}, {'Я', 32},
@@ -25,24 +27,29 @@ namespace Laba2
         private string EncryptedFilePath { get; set; }
         private string PasswordFilePath { get; set; }
         public string DecryptedPath { get; private set; }
+        private int CoreCount { get; set; }
 
         public Encrypted() { }
         public Encrypted(string sourcePath)
         {
             SourcePath = sourcePath;
+            _cancelOperation = new CancellationTokenSource();
         }
 
         public Encrypted(string text, string sourcePath)
         {
             OriginalText = text;
             SourcePath = sourcePath;
+            _cancelOperation = new CancellationTokenSource();
         }
 
-        public Encrypted(string text, string sourcePath, string secreeKey)
+        public Encrypted(string text, string sourcePath, string secretKey)
         {
             OriginalText = text;
             SourcePath = sourcePath;
-            Password = secreeKey;
+            Password = secretKey;
+            _cancelOperation = new CancellationTokenSource();
+
         }
 
         public void CreateEmptyFiles(string originalFilePath, string encryptedFilePath, string passwordFilePath)
@@ -149,41 +156,54 @@ namespace Laba2
             PasswordFilePath = passwordFilePath;
             EncryptedFilePath = encryptedFilePath;
             OriginalText = originalText;
+            CoreCount = GetProcessorCoreCount();
 
-            float chunkCharIndex = OriginalText.Length / 2;
-            var firstChunkOfText = OriginalText.Substring(0,(int)chunkCharIndex - 1);
-            var secondChunkOfText = OriginalText.Substring((int)chunkCharIndex - 1);
+            float chunkCharIndex = OriginalText.Length / CoreCount;
+            string[] textChunks = new string[CoreCount];
+            int index = -1;
+            var temp = 0;
 
-            var tf = new TaskFactory<string>(TaskCreationOptions.AttachedToParent, TaskContinuationOptions.ExecuteSynchronously);
+            while (++index < CoreCount)
+            {
+                if (index == CoreCount - 1)
+                {
+                    textChunks[index] = OriginalText.Substring(temp);
+                }
+                else
+                {
+                    textChunks[index] = OriginalText.Substring(temp,(int)chunkCharIndex);
+                }
+                temp =(int) chunkCharIndex - 1;
+                chunkCharIndex += chunkCharIndex;
+            }
+           
             string encryption = "";
-            string res = "";
 
-            var encrTasks = new[]
-                {
-                tf.StartNew(() => EncryptTextFile(firstChunkOfText)),
-                tf.StartNew(() => EncryptTextFile(secondChunkOfText))
-                };
-
-            try
+            var encrTasks = new Task<string>[CoreCount];
+            for (int i = 0; i < CoreCount; i++)
             {
-                
-                encryption = await tf.ContinueWhenAll(encrTasks, completedEncryption =>
-                {
-                    res = encrTasks[0].Result + encrTasks[1].Result;
-                    return res;
-                });
-
+                int inexLoc = i;
+                encrTasks[inexLoc] = Task.Factory.StartNew<string>(() => EncryptTextFile(textChunks[inexLoc]));
             }
-            catch (Exception ex)
+            encryption = await Task.Factory.ContinueWhenAll<string>(encrTasks, encrypted =>
             {
-                Console.WriteLine(ex.Message);
-            }
-            this.EncryptedText = res;
+                StringBuilder sbT = new StringBuilder();
+                foreach (var x in encrTasks)
+                {
+                    sbT.Append(x.Result);
+                }
+                return sbT.ToString();
+            });
+
+            this.EncryptedText = encryption;
             return encryption;
-
 
         }
 
+        private int GetProcessorCoreCount()
+        {
+            return Environment.ProcessorCount;
+        }
         public async Task<string> DecryptTextFileAsync(string decryptedFilePath)
         {
                 DecryptedPath = decryptedFilePath;
