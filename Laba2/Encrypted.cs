@@ -173,7 +173,7 @@ namespace Laba2
                 {
                     textChunks[index] = OriginalText.Substring(temp,(int)chunkCharIndex);
                 }
-                temp =(int) chunkCharIndex - 1;
+                temp =(int) chunkCharIndex;
                 chunkCharIndex += chunkCharIndex;
             }
            
@@ -223,7 +223,7 @@ namespace Laba2
             byte[] result = uniencoding.GetBytes(Password);
             char[] password = Encoding.Unicode.GetChars(result);
             int index = 0;
-            int keyCarret = 0;
+            int keyCarret = 1;
             int tmpCharNumber = -1;
             int tmpKeyCharNumber = -1;
             int tmpCryptedCharNumber = -1;
@@ -284,7 +284,7 @@ namespace Laba2
             char[] decryptedChars = new char[encryptedTextChars.Length];
             char[] password = Password.ToCharArray();
             int index = 0;
-            int keyCarret = 0;
+            int keyCarret = 1;
             int tmpCharNumber = -1;
             int tmpKeyCharNumber = -1;
             int tmpCryptedCharNumber = -1;
